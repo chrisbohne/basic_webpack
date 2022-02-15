@@ -2,10 +2,17 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  devtool: false, // doesn't use eval
   entry: './src/index.js',
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'], // css-loader needs to load first (its loading from right to left)
+      },
+    ],
   },
 };
